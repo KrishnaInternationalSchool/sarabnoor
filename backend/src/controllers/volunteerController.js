@@ -6,6 +6,10 @@ const {
   volunteerReviewSchema
 } = require("../validators/volunteerValidators");
 
+const getBaseUrl = (req) =>
+  process.env.SERVER_URL ||
+  `${req.protocol}://${req.get("host")}`;
+
 const createVolunteerApplication = async (req, res, next) => {
   try {
     const payload = validate(volunteerSchema, req.body);
@@ -26,14 +30,16 @@ const createVolunteerApplication = async (req, res, next) => {
       throw error;
     }
 
+    const baseUrl = getBaseUrl(req);
+
     const application = await VolunteerApplication.create({
       user: req.user._id,
       interestArea: payload.interestArea,
       message: payload.message,
-      profilePhoto: `/api/uploads/${profilePhoto.filename}`,
+      profilePhoto: `${baseUrl}/api/uploads/${profilePhoto.filename}`,
       documents: documents.map((file) => ({
         label: file.originalname,
-        fileUrl: `/api/uploads/${file.filename}`
+        fileUrl: `${baseUrl}/api/uploads/${file.filename}`
       }))
     });
 

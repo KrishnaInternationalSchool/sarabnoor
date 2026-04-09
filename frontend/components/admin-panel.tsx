@@ -21,6 +21,15 @@ type AdminStats = {
   activeCampaigns: number;
 };
 
+const backendBaseUrl =
+  (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/api$/, "");
+
+const toAbsoluteUploadUrl = (url?: string) => {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  return `${backendBaseUrl}${url}`;
+};
+
 type CampaignFormValues = {
   title: string;
   slug: string;
@@ -359,6 +368,32 @@ export function AdminPanel() {
             <div key={item._id} className="rounded-2xl bg-sand/70 p-4">
               <p className="font-medium">{item.user?.name}</p>
               <p className="text-sm text-stone capitalize">{item.status}</p>
+              <p className="mt-2 text-sm text-stone">
+                <span className="font-medium text-ink">Interest area:</span> {item.interestArea}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-3">
+                {item.profilePhoto && (
+                  <a
+                    href={toAbsoluteUploadUrl(item.profilePhoto)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="button-secondary"
+                  >
+                    View profile photo
+                  </a>
+                )}
+                {(item.documents || []).map((document: any, index: number) => (
+                  <a
+                    key={`${item._id}-${index}`}
+                    href={toAbsoluteUploadUrl(document.fileUrl)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="button-secondary"
+                  >
+                    {document.label || `View document ${index + 1}`}
+                  </a>
+                ))}
+              </div>
               <div className="mt-3 flex gap-3">
                 <button onClick={() => reviewVolunteer(item._id, "verified")} className="button-primary">
                   Verify

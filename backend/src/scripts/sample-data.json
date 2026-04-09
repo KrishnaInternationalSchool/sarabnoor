@@ -1,0 +1,31 @@
+{
+  "campaigns": [
+    {
+      "title": "Nourish Families With Dignity",
+      "slug": "nourish-families-with-dignity",
+      "summary": "Support monthly ration kits and warm meals for families facing hardship.",
+      "description": "This campaign helps Sarab Noor provide essential food support, nutrition kits, and emergency groceries to underserved families. The focus is on dignified relief with transparent distribution and community follow-up.",
+      "goalAmount": 250000,
+      "coverImage": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1593113598332-cd59a93f7d84?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "status": "active",
+      "featured": true
+    },
+    {
+      "title": "Education Support For Young Learners",
+      "slug": "education-support-for-young-learners",
+      "summary": "Help provide school supplies, learning access, and compassionate mentoring.",
+      "description": "Sarab Noor supports children with school materials, fee assistance, and volunteer-led learning support so that financial hardship does not interrupt education.",
+      "goalAmount": 180000,
+      "coverImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "status": "active",
+      "featured": false
+    }
+  ]
+}

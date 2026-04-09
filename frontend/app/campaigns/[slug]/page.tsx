@@ -1,6 +1,7 @@
 import Image from "next/image";
 
-import { DonateButton } from "@/components/donate-button";
+import { CampaignActions } from "@/components/campaign-actions";
+import { QrDonationCard } from "@/components/qr-donation-card";
 import { api } from "@/lib/api";
 import { demoCampaigns, demoModeEnabled } from "@/lib/demo-data";
 import type { Campaign } from "@/lib/types";
@@ -52,12 +53,12 @@ export default async function CampaignDetailPage({
             <h2 className="font-serif text-4xl">{currency(campaign.raisedAmount)}</h2>
             <p className="text-sm text-stone">Raised of {currency(campaign.goalAmount)}</p>
           </div>
-          <DonateButton campaignId={campaign._id} amount={500} />
-          <DonateButton campaignId={campaign._id} amount={1000} />
-          <DonateButton campaignId={campaign._id} amount={2500} />
-          <p className="text-sm leading-7 text-stone">
-            Donations are processed in Razorpay test mode with backend signature verification.
-          </p>
+          <QrDonationCard campaignTitle={campaign.title} />
+          <CampaignActions
+            title={campaign.title}
+            summary={campaign.summary}
+            slug={campaign.slug}
+          />
         </aside>
       </div>
     </div>

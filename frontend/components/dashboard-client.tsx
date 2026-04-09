@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { toast } from "sonner";
@@ -144,6 +145,21 @@ export function DashboardClient() {
                 <div className="text-right">
                   <p className="font-medium">{currency(donation.amount)}</p>
                   <p className="text-sm capitalize text-stone">{donation.status}</p>
+                  {donation.status === "paid" && (
+                    <Link
+                      href={`/receipt?donor=${encodeURIComponent(user.name)}&email=${encodeURIComponent(
+                        user.email
+                      )}&campaign=${encodeURIComponent(
+                        donation.campaign.title
+                      )}&amount=${donation.amount}&date=${encodeURIComponent(
+                        format(new Date(donation.createdAt), "dd MMM yyyy")
+                      )}&donationId=${donation._id}`}
+                      target="_blank"
+                      className="mt-2 inline-flex text-sm text-ink underline"
+                    >
+                      Receipt
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}
